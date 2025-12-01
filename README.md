@@ -2,9 +2,8 @@
 
 ## 📋 Description
 
-Microservice de gestion des garages, véhicules et accessoires pour le réseau Renault. Ce projet implémente une architecture Clean Architecture avec DDD (Domain-Driven Design), TDD (Test-Driven Development) et les principes SOLID.
-
-## 🚀 Technologies Utilisées
+Microservice de gestion des garages, véhicules et accessoires pour le réseau Renault. 
+##  Technologies Utilisées
 
 - **Framework:** Spring Boot 3.2.0
 - **Langage:** Java 17
@@ -18,30 +17,18 @@ Microservice de gestion des garages, véhicules et accessoires pour le réseau R
 - **Mapping:** MapStruct
 - **Utilitaires:** Lombok
 
-## 🏗️ Architecture
+##  Architecture
 
-### Clean Architecture (4 couches)
 
-```
-Presentation → Application → Domain → Infrastructure
-```
 
 - **Presentation:** Controllers REST, Exception Handlers
 - **Application:** DTOs, Mappers, Validators
 - **Domain:** Services métier, Business Rules, Exceptions
 - **Infrastructure:** Repositories, Kafka, Database
 
-### Design Patterns Implémentés
 
-1. **Repository Pattern** - Abstraction de la persistance
-2. **DTO Pattern** - Transfert de données
-3. **Builder Pattern** - Construction d'objets complexes
-4. **Strategy Pattern** - Stratégies de recherche
-5. **Factory Pattern** - Création d'événements
-6. **Observer Pattern** - Kafka pub/sub
-7. **Specification Pattern** - Requêtes dynamiques
 
-## 📦 Structure du Projet
+## Structure du Projet
 
 ```
 com.renault.garage
@@ -52,17 +39,9 @@ com.renault.garage
 └── presentation/        # Controllers, Exception Handlers
 ```
 
-## 🔧 Prérequis
+##  Démarrage Rapide
 
-- Java 17+
-- Maven 3.9+
-- Docker & Docker Compose
-- PostgreSQL 16 (ou via Docker)
-- Apache Kafka (ou via Docker)
-
-## 🚀 Démarrage Rapide
-
-### Avec Docker Compose (Recommandé)
+### Avec Docker Compose 
 
 ```bash
 # Cloner le projet
@@ -89,7 +68,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## 📚 Documentation API
+##  Documentation API
 
 Une fois l'application démarrée, accédez à la documentation Swagger:
 
@@ -97,7 +76,7 @@ Une fois l'application démarrée, accédez à la documentation Swagger:
 http://localhost:8080/api/swagger-ui.html
 ```
 
-## 🧪 Tests
+##  Tests
 
 ```bash
 # Exécuter tous les tests
@@ -110,14 +89,14 @@ mvn clean test jacoco:report
 # target/site/jacoco/index.html
 ```
 
-## 🔒 Sécurité
+##  Sécurité
 
 L'API est sécurisée avec JWT (JSON Web Tokens). Pour accéder aux endpoints protégés:
 
 1. Obtenir un token via `/api/auth/login`
 2. Inclure le token dans le header: `Authorization: Bearer <token>`
 
-## 📊 Contraintes Métier
+##  Contraintes Métier
 
 - **Quota véhicules:** Maximum 50 véhicules par garage
 - **Horaires d'ouverture:** Validation startTime < endTime
@@ -126,29 +105,29 @@ L'API est sécurisée avec JWT (JSON Web Tokens). Pour accéder aux endpoints pr
   - Vehicle: brand, model, yearOfManufacture, fuelType
   - Accessory: name, description, price, type
 
-## 🎯 Fonctionnalités
+##  Fonctionnalités
 
 ### Gestion des Garages
-- ✅ CRUD complet (Create, Read, Update, Delete)
-- ✅ Liste paginée avec tri
-- ✅ Recherche par critères
+-  CRUD complet (Create, Read, Update, Delete)
+-  Liste paginée avec tri
+-  Recherche par critères
 
 ### Gestion des Véhicules
-- ✅ CRUD complet
-- ✅ Association à un garage
-- ✅ Recherche par modèle
-- ✅ Publication d'événements Kafka
+-  CRUD complet
+-  Association à un garage
+-  Recherche par modèle
+-  Publication d'événements Kafka
 
 ### Gestion des Accessoires
-- ✅ CRUD complet
-- ✅ Association à un véhicule
-- ✅ Recherche par type
+-  CRUD complet
+-  Association à un véhicule
+-  Recherche par type
 
 ### Kafka Integration
-- ✅ Producer: Publication d'événements lors de la création de véhicules
-- ✅ Consumer: Consommation et traitement des événements
+-  Producer: Publication d'événements lors de la création de véhicules
+-  Consumer: Consommation et traitement des événements
 
-## 🌐 Endpoints Principaux
+##  Endpoints Principaux
 
 ### Garages
 - `GET /api/garages` - Liste paginée
@@ -170,48 +149,15 @@ L'API est sécurisée avec JWT (JSON Web Tokens). Pour accéder aux endpoints pr
 - `PUT /api/accessories/{id}` - Modifier un accessoire
 - `DELETE /api/accessories/{id}` - Supprimer un accessoire
 
-## 🛠️ Configuration
 
-### Variables d'environnement
-
-```properties
-# Database
-SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/renault_garage_db
-SPRING_DATASOURCE_USERNAME=renault_user
-SPRING_DATASOURCE_PASSWORD=renault_password
-
-# Kafka
-SPRING_KAFKA_BOOTSTRAP_SERVERS=localhost:29092
-
-# JWT
-JWT_SECRET=your-secret-key
-JWT_EXPIRATION=86400000
-```
-
-## 📈 Monitoring
+##  Monitoring
 
 Actuator endpoints disponibles:
 - `/api/actuator/health` - Santé de l'application
 - `/api/actuator/info` - Informations sur l'application
 - `/api/actuator/metrics` - Métriques
 
-## 🤝 Contribution
 
-Ce projet suit les principes:
-- **SOLID** - Principes de conception orientée objet
-- **DDD** - Domain-Driven Design
-- **TDD** - Test-Driven Development
-- **Clean Code** - Code propre et maintenable
 
-## 📝 Licence
-
-© 2024 Renault - Tous droits réservés
-
-## 👥 Auteurs
-
-Renault Team
-
----
-
+© 2025 Renault - Tous droits réservés
 **Version:** 1.0.0  
-**Dernière mise à jour:** 2025-12-01
