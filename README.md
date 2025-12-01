@@ -1,6 +1,6 @@
 # Renault Garage Management Microservice
 
-## 📋 Description
+##  Description
 
 Microservice de gestion des garages, véhicules et accessoires pour le réseau Renault. 
 ##  Technologies Utilisées
