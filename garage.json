@@ -1,9 +1,10 @@
-{
-    "name": "Garage Test Kafka",
-    "address": "123 Rue Kafka",
-    "telephone": "+33123456789",
-    "email": "kafka@renault.com",
-    "openingHours": {
-        "MONDAY": "08:00-18:00"
-    }
-}
+
+        {
+            "name": "Garage Test Kafka",
+            "address": "123 Rue Kafka",
+            "telephone": "+33123456789",
+            "email": "kafka@renault.com",
+            "openingHours": {
+                "MONDAY": "08:00-18:00"
+            }
+        }

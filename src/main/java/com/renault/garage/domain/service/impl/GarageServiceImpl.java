@@ -2,7 +2,9 @@ package com.renault.garage.domain.service.impl;
 
 import com.renault.garage.application.dto.request.GarageRequest;
 import com.renault.garage.application.dto.response.GarageResponse;
+import com.renault.garage.application.dto.response.VehicleResponse;
 import com.renault.garage.application.mapper.GarageMapper;
+import com.renault.garage.application.mapper.VehicleMapper;
 import com.renault.garage.domain.exception.GarageNotFoundException;
 import com.renault.garage.domain.model.Garage;
 import com.renault.garage.domain.model.enums.AccessoryType;
@@ -17,6 +19,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implémentation du service de gestion des garages.
@@ -35,7 +40,7 @@ public class GarageServiceImpl implements GarageService {
 
     private final GarageRepository garageRepository;
     private final GarageMapper garageMapper;
-
+    private final VehicleMapper vehicleMapper; // Injection du VehicleMapper
     @Override
     public GarageResponse createGarage(GarageRequest request) {
         log.info("Creating new garage: {}", request.getName());
@@ -141,11 +146,27 @@ public class GarageServiceImpl implements GarageService {
     @Transactional(readOnly = true)
     public Page<GarageResponse> searchGaragesByAccessoryType(AccessoryType accessoryType, Pageable pageable) {
         log.debug("Searching garages by accessory type: {}", accessoryType);
-        
+
+        // 1. Récupérer les garages qui correspondent au critère (via la spécification existante)
         Specification<Garage> spec = GarageSpecifications.hasVehicleWithAccessoryType(accessoryType);
         Page<Garage> garages = garageRepository.findAll(spec, pageable);
-        
-        return garages.map(garageMapper::toResponse);
+
+        // 2. Mapper en réponse et peupler les véhicules filtrés
+        return garages.map(garage -> {
+            GarageResponse response = garageMapper.toResponse(garage);
+
+            // Filtrer la liste des véhicules du garage pour ne garder que ceux ayant l'accessoire
+            List<VehicleResponse> matchingVehicles = garage.getVehicles().stream()
+                    .filter(vehicle -> vehicle.getAccessories().stream()
+                            .anyMatch(accessory -> accessory.getType() == accessoryType))
+                    .map(vehicleMapper::toResponse)
+                    .collect(Collectors.toList());
+
+            // Ajouter la liste filtrée à la réponse
+            response.setVehicles(matchingVehicles);
+
+            return response;
+        });
     }
 
     @Override

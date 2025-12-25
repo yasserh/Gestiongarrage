@@ -1,9 +1,9 @@
 {
-    "brand": "Renault",
-    "model": "Megane E-Tech",
-    "yearOfManufacture": 2024,
-    "fuelType": "ELECTRIQUE",
-    "vin": "VF1KAFKA000000001",
-    "color": "Gris",
-    "mileage": 100
-}
+            "brand": "Renault",
+            "model": "Megane E-Tech",
+            "yearOfManufacture": 2024,
+            "fuelType": "ELECTRIQUE",
+            "vin": "VF1KAFKA000000001",
+            "color": "Gris",
+            "mileage": 100
+        }

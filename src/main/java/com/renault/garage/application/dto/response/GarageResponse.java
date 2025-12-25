@@ -34,6 +34,9 @@ public class GarageResponse {
     private Integer vehicleCount;
     private Integer availableCapacity;
     private Boolean isFull;
+    // Nouveau champ pour la liste des véhicules (sera null par défaut pour les autres endpoints)
+    private List<VehicleResponse> vehicles;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

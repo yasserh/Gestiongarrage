@@ -16,7 +16,7 @@ import org.springframework.kafka.annotation.EnableKafka;
  */
 @SpringBootApplication
 @EnableKafka
-@EnableJpaAuditing
+
 public class GarageManagementApplication {
 
     public static void main(String[] args) {
